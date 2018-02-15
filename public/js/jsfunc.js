@@ -2,6 +2,7 @@
 // Global variable
 var thisDomain = window.location.hostname;
 var thisApi = thisDomain + '/api';
+var data_token = '';
 
 $( document ).ready(function() {
   // Handler for .ready() called.
@@ -24,8 +25,11 @@ $( document ).ready(function() {
 	  	   },
 	  	   success: function(data) {
 	  	   		console.log(data);
-	  	   		var dataJSON = JSON.parse(data);
-	  	   		console.log(dataJSON);
+	  	   		var data_status = data.status;
+	  	   		if (data_status == 'success') {
+	  	   			data_token = data.token;
+	  	   		}	  	   		
+	  	   		console.log(data_token);
 	  	   },
 	  	});
 
