@@ -1,8 +1,8 @@
-# laravel-api
-laravel api with dingo cors jwt--
+# Laravel 5.5 API Boilerplate
+Laravel api with dingo cors jwt--
 transformer and api-route
 
-#configuration
+# Configuration
 1. cd to cloned folder/directory
 2. run command:- composer install
 3. copy .env.example .env
