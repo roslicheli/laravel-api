@@ -14,6 +14,8 @@ class AuthController extends BaseController
 
     public function login(Request $request)
     {
+
+        // dd($request->all());
         try {
 
             if ($request->has('api_token')) {
@@ -40,7 +42,7 @@ class AuthController extends BaseController
             return response()->json(['status' => 'error', 'message' => 'Could not create token'], 500);
         }
 
-        return response()->json(['token' => $token, 'user' => $user]);
+        return response()->json(['status' => 'success', 'token' => $token, 'user' => $user], 200);
     }
 
     public function refresh()
@@ -56,6 +58,6 @@ class AuthController extends BaseController
         $current_token = JWTAuth::getToken();
         $token = JWTAuth::invalidate($current_token);
 
-        return response()->json(['status' => 'success', 'message' => 'Token Destroyed'], 500);
+        return response()->json(['status' => 'error', 'message' => 'Token Destroyed'], 401);
     }
 }

@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api-login', 'GeneralController@login')->name('api-login');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
