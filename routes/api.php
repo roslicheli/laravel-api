@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->group(['middleware' => ['cors','api'],'namespace'=>'App\Http\Controllers\Api'], function ($api) {
+    $api->group(['prefix'=> 'v1', 'middleware' => ['cors','api'],'namespace'=>'App\Http\Controllers\Api'], function ($api) {
 
     	$api->group(['prefix'=>'auth'], function($api){
     	    $api->post('login', 'AuthController@login');
@@ -32,6 +32,6 @@ $api->version('v1', function ($api) {
     		$api->get('users','UserController@index');
     	}); //end api->group['middleware->jwt.auth']
 
-    }); //end api->group['middleware->cors,api']
+    }); //end api->group['prefix'=> 'v1', 'middleware->cors,api']
 
 }); //end api->version

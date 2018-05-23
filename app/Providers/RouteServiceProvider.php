@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Dingo\Api\Facade\API;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -24,8 +27,15 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
         parent::boot();
+        $this->fireModelNotFoundException();
+    }
+
+    protected function fireModelNotFoundException()
+    {
+        API::error(function(ModelNotFoundException $exception){
+            return Response::make(['status'=>'error','message' => 'model not found'], 404);
+        });
     }
 
     /**

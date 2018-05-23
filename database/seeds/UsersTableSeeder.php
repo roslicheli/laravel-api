@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        
+        //disable foreign key check for this connection before running seeders
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         DB::table('users')->truncate();
 
@@ -28,6 +31,9 @@ class UserSeeder extends Seeder
             	'created_at'=>\Carbon\Carbon::now()
             ],
         ]);
+
+        //enable foreign key check for this connection after running seeders
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
     }
 }
